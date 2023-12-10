@@ -1,0 +1,25 @@
+pipeline{
+    agent any
+    stages{
+        stage('test'){
+            steps{
+                bat 'ECHO YAUSH'
+            }
+        }
+    }
+    post{
+        always{
+            echo 'always'
+        }
+        success{
+            echo 'only on success'
+        }
+        failure{
+            echo 'only on failue'
+        }
+        unstable{
+            echo 'only ifunstable'
+        }
+        
+    }
+}
