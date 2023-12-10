@@ -1,0 +1,40 @@
+pipeline{
+    agent any
+    stages{
+        stage('test'){
+            steps{
+                bat 'echo YAUSH'
+            }
+        }
+        stage('reu'){
+            steps{
+                bat 'echo YjjAUSH'
+            }
+        }
+        stage('tet'){
+            parallel {
+                stage ('safari') {
+                    steps {
+                        bat 'echo Running E2E tests on safari'
+                    }
+                }   
+            }
+            
+        }
+    }
+    post{
+        always{
+            echo 'always'
+        }
+        success{
+            echo 'only on success'
+        }
+        failure{
+            echo 'only on failue'
+        }
+        unstable{
+            echo 'only ifunstable'
+        }
+        
+    }
+}
